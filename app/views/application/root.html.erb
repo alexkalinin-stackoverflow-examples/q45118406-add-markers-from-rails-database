@@ -1,0 +1,22 @@
+<h3>My Google Maps Demo</h3>
+<div id="map"></div>
+
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: { lat: gon.locations[0].lat, lng: gon.locations[0].lng }
+    });
+
+    for(var i = 0; i < gon.locations.length; i++){
+      new google.maps.Marker({
+        position: { lat: gon.locations[i].lat, lng: gon.locations[i].lng },
+        title: gon.locations[i].name,
+        map: map
+      });
+    }
+  }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_maps_api %>&callback=initMap"
+        type="text/javascript"></script>
